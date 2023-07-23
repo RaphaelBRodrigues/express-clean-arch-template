@@ -1,5 +1,6 @@
 class ElectionRepository {
-  findCurrent() { }
+  getCurrentElection() { }
+  registerVote() { }
 }
 
 module.exports = ElectionRepository;

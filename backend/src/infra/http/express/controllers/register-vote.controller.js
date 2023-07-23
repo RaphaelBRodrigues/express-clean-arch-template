@@ -5,13 +5,19 @@ class RegisterVoteController {
     this.registerVoteUseCase = registerVoteUseCase;
   }
 
-  async handle(request, response) {
-    const voteDTO = new InputRegisterVoteDTO();
+  async handle(request, response, next) {
+    try {
+      const voteDTO = new InputRegisterVoteDTO({
+        participantId: request.body.participantId
+      });
 
-    await this.registerVoteUseCase(voteDTO);
+      const result = await this.registerVoteUseCase.execute(voteDTO);
 
-    return res.send();
-  };
+      return response.send(result);
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 module.exports = RegisterVoteController;

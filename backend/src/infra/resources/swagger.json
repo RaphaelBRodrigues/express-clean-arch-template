@@ -93,9 +93,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "partipantId": {
+                  "participantId": {
                     "type": "integer",
-                    "default": 3
+                    "default": 7
                   }
                 }
               }
@@ -109,13 +109,35 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "voteId": {
-                      "type": "integer",
-                      "example": "215"
-                    },
                     "message": {
                       "type": "string",
                       "default": "vote computed"
+                    },
+                    "election": {
+                      "type": "object",
+                      "properties": {
+                        "totalVotes": {
+                          "type": "integer",
+                          "default": "12"
+                        },
+                        "id": {
+                          "type": "integer",
+                          "default": "2"
+                        },
+                        "participants": {
+                          "type": "array",
+                          "items": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/FirstParticipant"
+                              },
+                              {
+                                "$ref": "#/components/schemas/SecondParticipant"
+                              }
+                            ]
+                          }
+                        }
+                      }
                     }
                   }
                 }

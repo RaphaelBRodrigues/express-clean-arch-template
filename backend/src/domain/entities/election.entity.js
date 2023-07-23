@@ -4,7 +4,12 @@ class Election {
   constructor({
     id = null,
     participants = [],
-  });
+    status = false
+  }) {
+    this.id = id;
+    this.participants = participants;
+    this.status = status;
+  };
 
 
   calcTotalVotes() {
@@ -15,3 +20,5 @@ class Election {
     this.totalVotes = totalVotes;
   }
 }
+
+module.exports = Election;
