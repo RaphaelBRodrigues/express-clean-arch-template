@@ -20,8 +20,6 @@ class HttpServer {
 
     this.app.use(express.json())
 
-
-
     this.app.use("/elections", electionRoutes);
     this.app.use("/participants", participantRoutes);
     this.app.use("/swagger", swaggerRoutes);
@@ -32,8 +30,6 @@ class HttpServer {
         message: "internal server error"
       })
     })
-
-
   }
 
   startListener() {

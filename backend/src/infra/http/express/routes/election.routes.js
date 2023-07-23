@@ -1,5 +1,6 @@
 const express = require('express');
 const RegisterVoteControllerFactory = require('../factories/register-vote.factory');
+const ExpressRouteAdapter = require('../adapters/express-route-adapter');
 
 class ElectionRoutes {
   #router = {};
@@ -10,9 +11,11 @@ class ElectionRoutes {
   }
 
   #createRoutes() {
-    const registerVoteController = new RegisterVoteControllerFactory().create();
+    const registerVoteController = new ExpressRouteAdapter(
+      new RegisterVoteControllerFactory().create()
+    );
 
-    this.#router.post("/vote", (req, res, next) => registerVoteController.handle(req, res, next))
+    this.#router.post("/vote", registerVoteController.handle);
   }
 
   get routes() {
