@@ -7,8 +7,10 @@ class ConsultCurrentElectionUseCase {
 
   execute(inputDTO) {
     const currentElection = this.electionRepository.getCurrentElection(inputDTO.electionId);
+    const outputDTO = new OutputConsultCurrentElectionDTO({
+      election: currentElection
+    });
 
-    const outputDTO = new OutputConsultCurrentElectionDTO(currentElection);
     return outputDTO;
   }
 }
