@@ -1,6 +1,7 @@
 const express = require('express');
 const ElectionRoutes = require('./routes/election.routes');
 const SwaggerRoutes = require('./routes/swagger.routes');
+const cors = require('cors');
 
 class HttpServer {
   constructor() {
@@ -16,6 +17,7 @@ class HttpServer {
     const electionRoutes = new ElectionRoutes().routes;
     const swaggerRoutes = new SwaggerRoutes().routes;
 
+    this.app.use(cors());
     this.app.use(express.json())
 
     this.app.use("/elections", electionRoutes);
